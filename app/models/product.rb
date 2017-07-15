@@ -10,6 +10,7 @@ class Product < ApplicationRecord
 
   scope :premium, -> {where(premium: true)}
   scope :last_n, ->(numero) {Product.order("id DESC").limit(numero)}
+  scope :search_category, ->(busqueda){where("category.name = ?", busqueda)}
 
   def precio_final
   	self.price - self.discount
